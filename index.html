@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -8,7 +7,7 @@
     <style>
         body {
             font-family: sans-serif;
-            background-color: #121212;
+            background-color: #0f172a;
             color: #e0e0e0;
             margin: 0;
             padding: 20px;
@@ -16,17 +15,25 @@
         }
         h1 {
             text-align: center;
-            color: #00ADB5;
+            color: #2563eb;
             font-size: 2.5em;
-            text-shadow: 0 0 10px #00ADB5;
+            text-shadow: 0 0 10px #2563eb;
+            margin-bottom: 20px;
+        }
+        blockquote {
+            font-style: italic;
+            color: #cbd5e1;
+            border-left: 5px solid #2563eb;
+            padding-left: 15px;
             margin-bottom: 40px;
+            text-align: center;
         }
         .category {
             margin-bottom: 40px;
         }
         .category h2 {
-            color: #00ADB5;
-            border-bottom: 2px solid #00ADB5;
+            color: #2563eb;
+            border-bottom: 2px solid #2563eb;
             padding-bottom: 10px;
             margin-bottom: 20px;
         }
@@ -36,26 +43,43 @@
             gap: 20px;
         }
         .card {
-            background-color: #1e1e1e;
-            border: 1px solid #333;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
             border-radius: 10px;
             padding: 20px;
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-            display: block;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 250px;
         }
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 173, 181, 0.3);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
         }
-        .card h3 {
-            color: #00ADB5;
+        .card .title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #1f2937;
             margin-bottom: 10px;
         }
-        .card p {
-            color: #b0b0b0;
+        .card .description {
+            color: #6b7280;
+            flex-grow: 1;
+            margin-bottom: 15px;
+        }
+        .card .link {
+            display: inline-block;
+            background-color: #2563eb;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .card .link:hover {
+            background-color: #1d4ed8;
         }
         @media (max-width: 768px) {
             .grid {
@@ -69,186 +93,69 @@
 </head>
 <body>
     <h1>Balamir'in AI Merkezi</h1>
+    <blockquote>"ChatGPT altyapısını kullanan ve tamamen ücretsiz yapay zeka araçlarını işlevlerine göre sınıflandıran bu platform; Balamir'in emekleriyle, yüce TÜRK GENÇLİĞİNE sunulmuş vatani bir hizmettir."</blockquote>
 
     <div class="category">
-        <h2>Genel Asistanlar & Yazım</h2>
+        <h2>Genel Asistanlar</h2>
         <div class="grid">
-            <a href="https://copilot.microsoft.com/" target="_blank" class="card">
-                <h3>Microsoft Copilot</h3>
-                <p>GPT-4 ve İnternet Erişimli</p>
-            </a>
-            <a href="https://claude.ai/" target="_blank" class="card">
-                <h3>Claude 3.5 Sonnet</h3>
-                <p>İnsani Yazım ve Kodlama</p>
-            </a>
-            <a href="https://huggingface.co/chat" target="_blank" class="card">
-                <h3>Hugging Face Chat</h3>
-                <p>Açık Kaynak Modeller</p>
-            </a>
+            <div class="card">
+                <div class="title">GPT-4 Destekli Canlı Araştırma</div>
+                <div class="description">İnternete bağlı güncel veri erişimi, kaynaklı cevaplar ve ücretsiz görsel oluşturma yeteneği.</div>
+                <a href="https://copilot.microsoft.com/" target="_blank" class="link">Microsoft Copilot</a>
+            </div>
+            <div class="card">
+                <div class="title">İnsani Dil Yeteneği & Analiz</div>
+                <div class="description">Akademik deneme yazımı, kod mantığı kurma ve robotik olmayan, akıcı bir dil yapısı.</div>
+                <a href="https://claude.ai/" target="_blank" class="link">Claude 3.5 Sonnet</a>
+            </div>
+            <div class="card">
+                <div class="title">Açık Kaynaklı Model Testi</div>
+                <div class="description">Llama, Mistral gibi farklı yapay zeka beyinlerini ücretsiz deneyimleme ve kıyaslama imkanı.</div>
+                <a href="https://huggingface.co/chat" target="_blank" class="link">Hugging Face Chat</a>
+            </div>
         </div>
     </div>
 
     <div class="category">
-        <h2>Akademik & Araştırma (Öğrenci Dostu)</h2>
+        <h2>Akademik Odaklı</h2>
         <div class="grid">
-            <a href="https://www.perplexity.ai/" target="_blank" class="card">
-                <h3>Perplexity AI</h3>
-                <p>Akademik Arama Motoru ve Kaynakça</p>
-            </a>
-            <a href="https://notebooklm.google.com/" target="_blank" class="card">
-                <h3>Google NotebookLM</h3>
-                <p>Ders Notu ve PDF Analizi</p>
-            </a>
-            <a href="https://consensus.app/" target="_blank" class="card">
-                <h3>Consensus</h3>
-                <p>Bilimsel Makale Tarama</p>
-            </a>
-        </div>
-    </div>
-
-    <div class="category">
-        <h2>Yazılım & Üretim</h2>
-        <div class="grid">
-            <a href="https://code.visualstudio.com/" target="_blank" class="card">
-                <h3>VS Code</h3>
-                <p>Kodlama Editörü</p>
-            </a>
-            <a href="https://education.github.com/pack" target="_blank" class="card">
-                <h3>GitHub Student Pack</h3>
-                <p>Öğrenci Avantajları ve Copilot</p>
-            </a>
-            <a href="https://www.bing.com/images/create" target="_blank" class="card">
-                <h3>DALL-E 3 / Bing Image Creator</h3>
-                <p>Görsel Oluşturma</p>
-            </a>
-        </div>
-    </div>
-</body>
-=======
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Balamir'in AI Merkezi</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            background-color: #121212;
-            color: #e0e0e0;
-            margin: 0;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        h1 {
-            text-align: center;
-            color: #00ADB5;
-            font-size: 2.5em;
-            text-shadow: 0 0 10px #00ADB5;
-            margin-bottom: 40px;
-        }
-        .category {
-            margin-bottom: 40px;
-        }
-        .category h2 {
-            color: #00ADB5;
-            border-bottom: 2px solid #00ADB5;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .card {
-            background-color: #1e1e1e;
-            border: 1px solid #333;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 173, 181, 0.3);
-        }
-        .card h3 {
-            color: #00ADB5;
-            margin-bottom: 10px;
-        }
-        .card p {
-            color: #b0b0b0;
-        }
-        @media (max-width: 768px) {
-            .grid {
-                grid-template-columns: 1fr;
-            }
-            h1 {
-                font-size: 2em;
-            }
-        }
-    </style>
-</head>
-<body>
-    <h1>Balamir'in AI Merkezi</h1>
-
-    <div class="category">
-        <h2>Genel Asistanlar & Yazım</h2>
-        <div class="grid">
-            <a href="https://copilot.microsoft.com/" target="_blank" class="card">
-                <h3>Microsoft Copilot</h3>
-                <p>GPT-4 ve İnternet Erişimli</p>
-            </a>
-            <a href="https://claude.ai/" target="_blank" class="card">
-                <h3>Claude 3.5 Sonnet</h3>
-                <p>İnsani Yazım ve Kodlama</p>
-            </a>
-            <a href="https://huggingface.co/chat" target="_blank" class="card">
-                <h3>Hugging Face Chat</h3>
-                <p>Açık Kaynak Modeller</p>
-            </a>
-        </div>
-    </div>
-
-    <div class="category">
-        <h2>Akademik & Araştırma (Öğrenci Dostu)</h2>
-        <div class="grid">
-            <a href="https://www.perplexity.ai/" target="_blank" class="card">
-                <h3>Perplexity AI</h3>
-                <p>Akademik Arama Motoru ve Kaynakça</p>
-            </a>
-            <a href="https://notebooklm.google.com/" target="_blank" class="card">
-                <h3>Google NotebookLM</h3>
-                <p>Ders Notu ve PDF Analizi</p>
-            </a>
-            <a href="https://consensus.app/" target="_blank" class="card">
-                <h3>Consensus</h3>
-                <p>Bilimsel Makale Tarama</p>
-            </a>
+            <div class="card">
+                <div class="title">Akademik Literatür Tarama</div>
+                <div class="description">Halüsinasyon riski olmayan, her cümleyi dipnotla doğrulayan akademik arama motoru.</div>
+                <a href="https://www.perplexity.ai/" target="_blank" class="link">Perplexity AI</a>
+            </div>
+            <div class="card">
+                <div class="title">Kişisel Ders Asistanı</div>
+                <div class="description">Yüklenen PDF kitap ve notları analiz eder, özet çıkarır ve soruları cevaplar.</div>
+                <a href="https://notebooklm.google.com/" target="_blank" class="link">Google NotebookLM</a>
+            </div>
+            <div class="card">
+                <div class="title">Bilimsel Makale Konsensüsü</div>
+                <div class="description">Sorulara bloglardan değil, sadece hakemli bilimsel makalelerden kanıtlarla yanıt verir.</div>
+                <a href="https://consensus.app/" target="_blank" class="link">Consensus</a>
+            </div>
         </div>
     </div>
 
     <div class="category">
         <h2>Yazılım & Üretim</h2>
         <div class="grid">
-            <a href="https://code.visualstudio.com/" target="_blank" class="card">
-                <h3>VS Code</h3>
-                <p>Kodlama Editörü</p>
-            </a>
-            <a href="https://education.github.com/pack" target="_blank" class="card">
-                <h3>GitHub Student Pack</h3>
-                <p>Öğrenci Avantajları ve Copilot</p>
-            </a>
-            <a href="https://www.bing.com/images/create" target="_blank" class="card">
-                <h3>DALL-E 3 / Bing Image Creator</h3>
-                <p>Görsel Oluşturma</p>
-            </a>
+            <div class="card">
+                <div class="title">Profesyonel Kodlama Editörü</div>
+                <div class="description">Dünyanın en gelişmiş kod düzenleyicisi, eklenti desteği ve entegre terminal yapısı.</div>
+                <a href="https://code.visualstudio.com/" target="_blank" class="link">VS Code</a>
+            </div>
+            <div class="card">
+                <div class="title">AI Destekli Yazılım Geliştirme</div>
+                <div class="description">GitHub Copilot ile kod tamamlama ve öğrenci avantajlarına ücretsiz erişim paketi.</div>
+                <a href="https://education.github.com/pack" target="_blank" class="link">GitHub Student Pack</a>
+            </div>
+            <div class="card">
+                <div class="title">Metinden Görsel Tasarım</div>
+                <div class="description">Sunum, proje ve sosyal medya içerikleri için yüksek kaliteli görsel oluşturma.</div>
+                <a href="https://www.bing.com/images/create" target="_blank" class="link">DALL-E 3 (Designer)</a>
+            </div>
         </div>
     </div>
 </body>
->>>>>>> a7a9c38ee2598c301b6e44ac2654a2f11951cbb5
 </html>
