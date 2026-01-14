@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balamir'in AI Merkezi</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+            color: #00ADB5;
+            font-size: 2.5em;
+            text-shadow: 0 0 10px #00ADB5;
+            margin-bottom: 40px;
+        }
+        .category {
+            margin-bottom: 40px;
+        }
+        .category h2 {
+            color: #00ADB5;
+            border-bottom: 2px solid #00ADB5;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 173, 181, 0.3);
+        }
+        .card h3 {
+            color: #00ADB5;
+            margin-bottom: 10px;
+        }
+        .card p {
+            color: #b0b0b0;
+        }
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Balamir'in AI Merkezi</h1>
+
+    <div class="category">
+        <h2>Genel Asistanlar & Yazım</h2>
+        <div class="grid">
+            <a href="https://copilot.microsoft.com/" target="_blank" class="card">
+                <h3>Microsoft Copilot</h3>
+                <p>GPT-4 ve İnternet Erişimli</p>
+            </a>
+            <a href="https://claude.ai/" target="_blank" class="card">
+                <h3>Claude 3.5 Sonnet</h3>
+                <p>İnsani Yazım ve Kodlama</p>
+            </a>
+            <a href="https://huggingface.co/chat" target="_blank" class="card">
+                <h3>Hugging Face Chat</h3>
+                <p>Açık Kaynak Modeller</p>
+            </a>
+        </div>
+    </div>
+
+    <div class="category">
+        <h2>Akademik & Araştırma (Öğrenci Dostu)</h2>
+        <div class="grid">
+            <a href="https://www.perplexity.ai/" target="_blank" class="card">
+                <h3>Perplexity AI</h3>
+                <p>Akademik Arama Motoru ve Kaynakça</p>
+            </a>
+            <a href="https://notebooklm.google.com/" target="_blank" class="card">
+                <h3>Google NotebookLM</h3>
+                <p>Ders Notu ve PDF Analizi</p>
+            </a>
+            <a href="https://consensus.app/" target="_blank" class="card">
+                <h3>Consensus</h3>
+                <p>Bilimsel Makale Tarama</p>
+            </a>
+        </div>
+    </div>
+
+    <div class="category">
+        <h2>Yazılım & Üretim</h2>
+        <div class="grid">
+            <a href="https://code.visualstudio.com/" target="_blank" class="card">
+                <h3>VS Code</h3>
+                <p>Kodlama Editörü</p>
+            </a>
+            <a href="https://education.github.com/pack" target="_blank" class="card">
+                <h3>GitHub Student Pack</h3>
+                <p>Öğrenci Avantajları ve Copilot</p>
+            </a>
+            <a href="https://www.bing.com/images/create" target="_blank" class="card">
+                <h3>DALL-E 3 / Bing Image Creator</h3>
+                <p>Görsel Oluşturma</p>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
