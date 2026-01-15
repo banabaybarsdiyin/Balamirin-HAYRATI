@@ -1,479 +1,945 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Balamir'in Hayratı | Yapay Zekâ Arşivi</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balamir'in Hayratı | Genişletilmiş YZ Arşivi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
 
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        :root {
+            --primary: #ef4444; /* Türk Kırmızısı */
+            --bg-dark: #09090b;
+            --card-bg: rgba(24, 24, 27, 0.7);
+            --nav-bg: rgba(9, 9, 11, 0.95);
+            --border: rgba(255, 255, 255, 0.1);
+            --text-muted: #94a3b8;
 
-<style>
-*{box-sizing:border-box}
-:root{
---primary:#ef4444;
---bg-dark:#09090b;
---card-bg:rgba(24,24,27,.7);
---nav-bg:rgba(9,9,11,.95);
---border:rgba(255,255,255,.1);
---text-muted:#94a3b8;
---price-free:#22c55e;
---price-freemium:#f59e0b;
---price-paid:#ef4444;
---price-trial:#3b82f6;
-}
-html{scroll-behavior:smooth}
-body{
-font-family:'Space Grotesk',sans-serif;
-background:var(--bg-dark);
-background-image:
-linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
-linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
-background-size:50px 50px;
-color:#f1f5f9;
-margin:0;
-}
+            /* Fiyatlandırma Renkleri */
+            --price-free: #22c55e; /* Yeşil */
+            --price-freemium: #f59e0b; /* Turuncu */
+            --price-paid: #ef4444; /* Kırmızı */
+            --price-trial: #3b82f6; /* Mavi */
+        }
 
-/* HEADER */
-header{text-align:center;max-width:1100px;margin:auto;padding:60px 20px}
-h1{
-font-size:3.2rem;
-letter-spacing:-2px;
-text-transform:uppercase;
-text-shadow:0 0 30px rgba(239,68,68,.5);
-margin-bottom:20px
-}
-.subtitle{
-border-left:3px solid var(--primary);
-padding:20px;
-background:rgba(255,255,255,.03);
-border-radius:0 14px 14px 0;
-text-align:left;
-max-width:900px;
-margin:auto
-}
+        html { scroll-behavior: smooth; }
 
-/* NAV */
-nav{
-position:sticky;
-top:0;
-z-index:1000;
-background:var(--nav-bg);
-border-bottom:1px solid var(--border);
-overflow-x:auto;
-}
-.nav-container{
-display:flex;
-gap:14px;
-padding:14px 20px;
-white-space:nowrap
-}
-nav a{
-color:var(--text-muted);
-text-decoration:none;
-padding:8px 14px;
-border-radius:99px;
-font-weight:600;
-}
-nav a:hover{color:#fff;background:rgba(255,255,255,.05)}
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-dark);
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            color: #f1f5f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+        }
 
-/* FILTER BAR */
-.filter-bar{
-position:sticky;
-top:56px;
-z-index:999;
-background:rgba(9,9,11,.92);
-backdrop-filter:blur(10px);
-border-bottom:1px solid var(--border);
-padding:16px;
-display:grid;
-grid-template-columns:1fr 1fr 1.4fr auto;
-gap:14px
-}
-.filter-block{
-border:1px solid var(--border);
-border-radius:14px;
-padding:12px;
-background:rgba(255,255,255,.03)
-}
-.filter-title{
-font-size:.7rem;
-letter-spacing:2px;
-margin-bottom:8px;
-color:#cbd5e1;
-font-weight:700
-}
-.checks{display:flex;flex-wrap:wrap;gap:10px}
-.check{font-size:.85rem;cursor:pointer}
-.check input{accent-color:var(--primary)}
-.search-input{
-width:100%;
-padding:10px;
-border-radius:10px;
-border:1px solid var(--border);
-background:rgba(0,0,0,.25);
-color:#fff
-}
-.btn{
-padding:10px 14px;
-border-radius:10px;
-border:1px solid var(--border);
-background:rgba(255,255,255,.05);
-color:#fff;
-font-weight:700;
-cursor:pointer
-}
-.btn:hover{background:var(--primary);color:#000}
-.result-count{
-padding:10px;
-border-radius:10px;
-border:1px solid var(--border);
-background:rgba(255,255,255,.03)
-}
+        /* --- HEADER --- */
+        header {
+            text-align: center;
+            max-width: 1000px;
+            padding: 60px 20px 40px;
+            animation: slideDown 1s ease-out;
+        }
 
-/* CONTENT */
-.main-content{max-width:1400px;margin:auto;padding:20px}
+        h1 {
+            color: #fff;
+            font-size: 3.5rem;
+            margin: 0 0 20px 0;
+            font-weight: 700;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+            text-shadow: 0 0 30px rgba(239, 68, 68, 0.5);
+        }
 
-/* ACCORDION */
-.category-section{
-margin-bottom:40px;
-border:1px solid var(--border);
-border-radius:18px;
-background:rgba(255,255,255,.02)
-}
-.category-header{
-padding:16px 18px;
-cursor:pointer;
-display:flex;
-align-items:center;
-gap:12px;
-font-weight:700;
-letter-spacing:3px;
-color:var(--primary)
-}
-.category-header span{margin-left:auto;display:flex;gap:8px;font-size:.8rem}
-.chev{
-width:10px;height:10px;
-border-right:2px solid #cbd5e1;
-border-bottom:2px solid #cbd5e1;
-transform:rotate(45deg);
-transition:.3s
-}
-.category-section[data-collapsed="true"] .chev{
-transform:rotate(-135deg)
-}
-.category-body{
-overflow:hidden;
-transition:max-height .4s ease,opacity .3s ease;
-padding:0 18px 18px
-}
-.category-section[data-collapsed="true"] .category-body{
-max-height:0!important;
-opacity:0;
-padding-bottom:0
-}
+        .subtitle {
+            color: #cbd5e1;
+            font-size: 1.15rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-weight: 400;
+            border-left: 3px solid var(--primary);
+            padding-left: 20px;
+            text-align: left;
+            background: rgba(255,255,255,0.03);
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+        }
 
-/* GRID & CARD */
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-gap:20px
-}
-.card{
-background:var(--card-bg);
-border:1px solid var(--border);
-border-radius:16px;
-padding:18px;
-display:flex;
-flex-direction:column;
-min-height:220px;
-transition:.3s
-}
-.card:hover{
-transform:translateY(-4px);
-border-color:var(--primary)
-}
-.card-header{
-display:flex;
-justify-content:space-between;
-gap:10px
-}
-.card-title{font-weight:700}
-.card-desc{color:#a1a1aa;font-size:.9rem;margin:12px 0;flex-grow:1}
-.tag-row{margin-bottom:10px}
-.tag{
-font-size:.65rem;
-padding:3px 8px;
-border-radius:8px;
-border:1px solid rgba(255,255,255,.1);
-margin-right:6px;
-display:inline-block
-}
-.price-badge{
-font-size:.65rem;
-padding:4px 8px;
-border-radius:8px;
-border:1px solid
-}
-.p-free{color:var(--price-free);border-color:var(--price-free)}
-.p-freemium{color:var(--price-freemium);border-color:var(--price-freemium)}
-.p-paid{color:var(--price-paid);border-color:var(--price-paid)}
-.p-trial{color:var(--price-trial);border-color:var(--price-trial)}
+        /* --- STICKY NAVIGASYON --- */
+        nav {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 15px 0;
+            margin-bottom: 50px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
 
-.visit-btn{
-margin-top:auto;
-text-align:center;
-padding:10px;
-border-radius:10px;
-border:1px solid var(--border);
-text-decoration:none;
-color:#fff
-}
-.visit-btn:hover{background:var(--primary);color:#000}
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 0 20px;
+        }
 
-.hidden-by-filter{display:none!important}
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 99px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
 
-/* EMPTY */
-.empty-note{
-display:none;
-margin-top:12px;
-padding:12px;
-border:1px dashed rgba(255,255,255,.15);
-border-radius:12px;
-color:#94a3b8
-}
-.category-section[data-empty="true"] .empty-note{display:block}
+        nav a:hover {
+            color: #fff;
+            border-color: var(--border);
+            background: rgba(255,255,255,0.05);
+        }
 
-@media(max-width:900px){
-.filter-bar{grid-template-columns:1fr}
-}
-</style>
+        /* --- İÇERİK IZGARASI --- */
+        .main-content {
+            width: 100%;
+            max-width: 1400px; /* Genişletildi */
+            padding: 0 20px 60px;
+            animation: slideUp 1s ease-out;
+        }
+
+        .category-section {
+            scroll-margin-top: 100px;
+            margin-bottom: 22px;
+        }
+
+        /* --- ACCORDION BAŞLIK --- */
+        .category-header {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--primary);
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            cursor: pointer;
+            user-select: none;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.03);
+            padding: 14px 16px;
+            border-radius: 14px;
+        }
+        .category-header::after { content: ''; height: 1px; flex: 1; background: #334155; opacity: .8; }
+
+        .category-toggle {
+            margin-left: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #cbd5e1;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .chev {
+            width: 10px;
+            height: 10px;
+            border-right: 2px solid #cbd5e1;
+            border-bottom: 2px solid #cbd5e1;
+            transform: rotate(45deg);
+            transition: transform 0.25s ease;
+        }
+
+        .category-section[data-collapsed="true"] .chev {
+            transform: rotate(-135deg);
+        }
+
+        .category-body {
+            overflow: hidden;
+            transition: max-height 0.35s ease, opacity 0.25s ease;
+            opacity: 1;
+            margin-top: 14px;
+        }
+
+        .category-section[data-collapsed="true"] .category-body {
+            max-height: 0 !important;
+            opacity: 0;
+            pointer-events: none;
+            margin-top: 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            min-height: 200px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px -5px rgba(0,0,0,0.5);
+        }
+
+        /* Kart Üst Bilgi Alanı */
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .card-title { font-size: 1.1rem; font-weight: 700; color: #fff; }
+
+        .card-desc { font-size: 0.9rem; color: #a1a1aa; margin-bottom: 20px; flex-grow: 1; line-height: 1.5; }
+
+        /* Etiketler */
+        .tag {
+            font-size: 0.7rem; padding: 3px 8px;
+            background: rgba(255, 255, 255, 0.05); color: #fff;
+            border-radius: 4px; font-weight: 500;
+            margin-right: 5px;
+            display: inline-block;
+        }
+
+        /* Fiyat Etiketi */
+        .price-badge {
+            font-size: 0.7rem;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: 1px solid;
+        }
+        .p-free { color: var(--price-free); border-color: var(--price-free); background: rgba(34, 197, 94, 0.1); }
+        .p-freemium { color: var(--price-freemium); border-color: var(--price-freemium); background: rgba(245, 158, 11, 0.1); }
+        .p-paid { color: var(--price-paid); border-color: var(--price-paid); background: rgba(239, 68, 68, 0.1); }
+        .p-trial { color: var(--price-trial); border-color: var(--price-trial); background: rgba(59, 130, 246, 0.1); }
+
+        /* Buton */
+        .visit-btn {
+            display: block;
+            text-decoration: none;
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 8px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            text-align: center;
+            transition: 0.3s;
+            margin-top: auto;
+        }
+        .visit-btn:hover { background: var(--primary); color: #000; }
+
+        /* Animasyonlar */
+        @keyframes slideDown { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .subtitle { font-size: 0.95rem; }
+            .grid { grid-template-columns: 1fr; }
+            .nav-container { justify-content: flex-start; }
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-<h1>BALAMİR'İN HAYRATI</h1>
-<div class="subtitle">
-Yapay zekâ araçlarını **kategorilere, fiyatlara ve kullanım profillerine göre**
-düzenleyen yaşayan bir arşiv.
-</div>
-</header>
+    <header>
+        <h1>BALAMİR'İN HAYRATI</h1>
+        <div class="subtitle">
+            Yapay zeka araçlarını işlevlerine göre sınıflandıran bu platform Balamir'in emekleriyle Yüce TÜRK GENÇLİĞİNİN hizmetine sunulmuş vatani bir hizmettir.
+        </div>
+    </header>
 
-<nav>
-<div class="nav-container">
-<a href="#yazilim">💻 Yazılım</a>
-<a href="#gorsel">🎨 Görsel</a>
-<a href="#dil">🗣️ Dil</a>
-<a href="#sunum">🖥️ Sunum</a>
-<a href="#veri">📊 Veri</a>
-<a href="#yazi">📝 Yazı</a>
-<a href="#3d">🎮 3D</a>
-<a href="#saglik">🌿 Sağlık</a>
-<a href="#akademik">🎓 Akademik</a>
-<a href="#ses">🎵 Ses</a>
-<a href="#video">🎬 Video</a>
-<a href="#genel">🧠 Genel</a>
-</div>
-</nav>
+    <nav>
+        <div class="nav-container">
+            <a href="#yazilim">💻 Yazılım</a>
+            <a href="#gorsel">🎨 Görsel</a>
+            <a href="#dil">🗣️ Dil</a>
+            <a href="#sunum">🖥️ Sunum</a>
+            <a href="#veri">📊 Veri/Excel</a>
+            <a href="#yazi">📝 Yazarlık</a>
+            <a href="#3d">🎮 3D & Oyun</a>
+            <a href="#saglik">🌿 Sağlık</a>
+            <a href="#akademik">🎓 Akademik</a>
+            <a href="#ses">🎵 Ses</a>
+            <a href="#video">🎬 Video</a>
+            <a href="#genel">🧠 Genel</a>
+        </div>
+    </nav>
 
-<div class="filter-bar">
-<div class="filter-block">
-<div class="filter-title">Arama</div>
-<input id="searchInput" class="search-input" placeholder="Ara...">
-</div>
+    <div class="main-content">
 
-<div class="filter-block">
-<div class="filter-title">Fiyat</div>
-<div class="checks" id="priceChecks">
-<label class="check"><input type="checkbox" value="free"> Ücretsiz</label>
-<label class="check"><input type="checkbox" value="freemium"> Kısmi</label>
-<label class="check"><input type="checkbox" value="trial"> Deneme</label>
-<label class="check"><input type="checkbox" value="paid"> Ücretli</label>
-</div>
-</div>
+        <!-- Varsayılan AÇIK -->
+        <section id="yazilim" class="category-section" data-collapsed="false">
+            <div class="category-header">
+                💻 YAZILIM VE KODLAMA
+                <span class="category-toggle"><span class="chev"></span> Aç/Kapat</span>
+            </div>
+            <div class="category-body">
+                <div class="grid">
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Codeium</div><div class="price-badge p-free">Tamamen Ücretsiz</div></div>
+                        <div class="card-desc">Bireysel kullanım için tamamen ücretsiz, çok güçlü bir GitHub Copilot alternatifi.</div>
+                        <a href="https://codeium.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Cursor</div><div class="price-badge p-freemium">Kısmi Ücretsiz</div></div>
+                        <div class="card-desc">VS Code tabanlı editör. Ücretsiz planda güçlü yapay zeka özellikleri mevcut.</div>
+                        <a href="https://cursor.sh/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Blackbox AI</div><div class="price-badge p-freemium">Kısmi Ücretsiz</div></div>
+                        <div class="card-desc">Kodlama soruları ve kod üretimi için özelleşmiş arama motoru.</div>
+                        <a href="https://www.blackbox.ai/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Replit</div><div class="price-badge p-freemium">Kısmi Ücretsiz</div></div>
+                        <div class="card-desc">Tarayıcıda çalışan IDE. Günlük sınırlı yapay zeka yardımı sunar.</div>
+                        <a href="https://replit.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">GitHub Copilot</div><div class="price-badge p-paid">Öğrenciye Ücretsiz</div></div>
+                        <div class="card-desc">Normalde ücretli ancak GitHub Student Pack ile öğrencilere bedava.</div>
+                        <a href="https://github.com/features/copilot" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Warp Terminal</div><div class="price-badge p-free">Tamamen Ücretsiz</div></div>
+                        <div class="card-desc">Yapay zeka destekli, komutları kendi yazan modern terminal (Mac/Linux).</div>
+                        <a href="https://www.warp.dev/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Claude 3.5</div><div class="price-badge p-freemium">Kısıtlı Ücretsiz</div></div>
+                        <div class="card-desc">Kod mantığı kurmada en iyi model. Günlük mesaj limiti var.</div>
+                        <a href="https://claude.ai/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Hugging Face Chat</div><div class="price-badge p-free">Tamamen Ücretsiz</div></div>
+                        <div class="card-desc">Açık kaynaklı kodlama modellerini (Llama 3, Qwen) ücretsiz deneyin.</div>
+                        <a href="https://huggingface.co/chat/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<div class="filter-block">
-<div class="filter-title">Etiket</div>
-<div class="checks" id="tagChecks">
-<label class="check"><input type="checkbox" value="student"> 🎓 Öğrenci</label>
-<label class="check"><input type="checkbox" value="individual"> 👤 Bireysel</label>
-<label class="check"><input type="checkbox" value="pro"> 💼 Pro</label>
-<label class="check"><input type="checkbox" value="fast"> ⚡ Hızlı</label>
-<label class="check"><input type="checkbox" value="deep"> 🧠 Derin</label>
-<label class="check"><input type="checkbox" value="beta"> 🧪 Beta</label>
-</div>
-</div>
+        <!-- Varsayılan KAPALI -->
+        <section id="gorsel" class="category-section" data-collapsed="true">
+            <div class="category-header">
+                🎨 GÖRSEL TASARIM
+                <span class="category-toggle"><span class="chev"></span> Aç/Kapat</span>
+            </div>
+            <div class="category-body">
+                <div class="grid">
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">DALL-E 3</div><div class="price-badge p-freemium">Kısmi Ücretsiz</div></div>
+                        <div class="card-desc">ChatGPT (Limitli) veya Microsoft Bing üzerinden ücretsiz kullanılabilir.</div>
+                        <a href="https://www.bing.com/images/create" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Leonardo.ai</div><div class="price-badge p-freemium">Günlük Kredi</div></div>
+                        <div class="card-desc">Her gün 150 ücretsiz kredi verir. Oyun ve sanat çizimleri için harika.</div>
+                        <a href="https://leonardo.ai/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Recraft.ai</div><div class="price-badge p-free">Tamamen Ücretsiz</div></div>
+                        <div class="card-desc">Vektörel çizim, logo ve ikon tasarımı için şu an tamamen ücretsiz.</div>
+                        <a href="https://www.recraft.ai/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Ideogram</div><div class="price-badge p-freemium">Günlük Limit</div></div>
+                        <div class="card-desc">Görsel üzerine doğru yazı yazma konusunda en iyisi. Günlük ücretsiz hak var.</div>
+                        <a href="https://ideogram.ai/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Playground AI</div><div class="price-badge p-freemium">Günde 500 Resim</div></div>
+                        <div class="card-desc">Günlük çok yüksek (500 adet) ücretsiz resim üretim hakkı verir.</div>
+                        <a href="https://playgroundai.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Adobe Firefly</div><div class="price-badge p-freemium">Aylık Kredi</div></div>
+                        <div class="card-desc">Web sürümünde her ay 25 ücretsiz üretim kredisi verir.</div>
+                        <a href="https://firefly.adobe.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Krea AI</div><div class="price-badge p-freemium">Kısmi Ücretsiz</div></div>
+                        <div class="card-desc">Gerçek zamanlı çizim ve görsel iyileştirme. Günlük limitli.</div>
+                        <a href="https://www.krea.ai/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Midjourney</div><div class="price-badge p-paid">Ücretli</div></div>
+                        <div class="card-desc">Sektörün lideri ancak şu an ücretsiz deneme sunmuyor.</div>
+                        <a href="https://www.midjourney.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<div style="display:flex;gap:10px;align-items:center">
-<div id="resultCount" class="result-count">0 / 0</div>
-<button id="clearBtn" class="btn">Temizle</button>
-</div>
-</div>
+        <section id="dil" class="category-section" data-collapsed="true">
+            <div class="category-header">
+                🗣️ DİL ÖĞRENME VE PRATİK
+                <span class="category-toggle"><span class="chev"></span> Aç/Kapat</span>
+            </div>
+            <div class="category-body">
+                <div class="grid">
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Speak</div><div class="price-badge p-trial">Deneme Sürümü</div></div>
+                        <div class="card-desc">Konuşma pratiği için dünyanın en iyisi. Seni dinler, telaffuzunu anında düzeltir.</div>
+                        <a href="https://www.speak.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Praktika.ai</div><div class="price-badge p-freemium">Kısmi Ücretsiz</div></div>
+                        <div class="card-desc">Karşında 3D bir avatar hoca ile görüntülü ve sesli İngilizce konuşma pratiği yap.</div>
+                        <a href="https://praktika.ai/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">DeepL Write</div><div class="price-badge p-free">Tamamen Ücretsiz</div></div>
+                        <div class="card-desc">Yazdığın İngilizce/Almanca metni anadili gibi doğal ve profesyonel hale getirir.</div>
+                        <a href="https://www.deepl.com/write" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">ChatGPT (Sesli)</div><div class="price-badge p-freemium">Kısmi Ücretsiz</div></div>
+                        <div class="card-desc">Mobil uygulamasındaki kulaklık modunu aç, İngilizce mülakat veya sohbet yap.</div>
+                        <a href="https://chat.openai.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Quillbot</div><div class="price-badge p-freemium">Kısmi Ücretsiz</div></div>
+                        <div class="card-desc">Basit cümlelerini akademik veya profesyonel İngilizceye çevirir (Paraphrase).</div>
+                        <a href="https://quillbot.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Duolingo</div><div class="price-badge p-freemium">Kısmi Ücretsiz</div></div>
+                        <div class="card-desc">Oyunlaştırılmış dil öğrenme. Temel sürümü sonsuza kadar ücretsizdir.</div>
+                        <a href="https://www.duolingo.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Gliglish</div><div class="price-badge p-freemium">Günlük Limit</div></div>
+                        <div class="card-desc">Yapay zeka ile sesli sohbet ederek dil öğrenme sitesi.</div>
+                        <a href="https://gliglish.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Elsa Speak</div><div class="price-badge p-freemium">Kısmi Ücretsiz</div></div>
+                        <div class="card-desc">Aksan düzeltme odaklı. Hangi heceyi yanlış söylediğini milimetrik gösterir.</div>
+                        <a href="https://elsaspeak.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<!-- 🔻 BURADAN AŞAĞI KARTLAR AYNI ŞEKİLDE DEVAM EDER -->
-<!-- Mevcut kartlarını AYNEN bırakabilirsin -->
-<!-- Sadece her kategori şu yapıda olmalı -->
+        <section id="sunum" class="category-section" data-collapsed="true">
+            <div class="category-header">
+                🖥️ SUNUM VE SLAYT
+                <span class="category-toggle"><span class="chev"></span> Aç/Kapat</span>
+            </div>
+            <div class="category-body">
+                <div class="grid">
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Gamma</div><div class="price-badge p-freemium">Başlangıç Kredisi</div></div>
+                        <div class="card-desc">Konuyu yaz, saniyeler içinde şık, resimli ve metinli tam bir sunum hazırlasın.</div>
+                        <a href="https://gamma.app/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Tome</div><div class="price-badge p-freemium">Kısmi Ücretsiz</div></div>
+                        <div class="card-desc">Hikaye anlatıcılığı odaklı, çok estetik ve modern sunumlar oluşturur.</div>
+                        <a href="https://tome.app/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">SlidesAI</div><div class="price-badge p-freemium">Ayda 3 Sunum</div></div>
+                        <div class="card-desc">Google Slides eklentisidir. Uzun bir metni verirsin, onu slaytlara böler.</div>
+                        <a href="https://www.slidesai.io/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Beautiful.ai</div><div class="price-badge p-trial">14 Gün Deneme</div></div>
+                        <div class="card-desc">Tasarım bilmene gerek yok, şablonları yapay zeka ile otomatik hizalar.</div>
+                        <a href="https://www.beautiful.ai/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Pitch</div><div class="price-badge p-free">Tamamen Ücretsiz</div></div>
+                        <div class="card-desc">Girişimciler için profesyonel sunum aracı. Temel sürümü oldukça kapsamlı.</div>
+                        <a href="https://pitch.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Decktopus</div><div class="price-badge p-freemium">Kısıtlı Ücretsiz</div></div>
+                        <div class="card-desc">Türk girişimi sunum aracı. Konuyu gir, PDF veya link olarak sunumu al.</div>
+                        <a href="https://decktopus.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Prezi AI</div><div class="price-badge p-trial">Deneme Sürümü</div></div>
+                        <div class="card-desc">Hareketli ve dinamik sunumlar hazırlayan klasik Prezi'nin yapay zeka hali.</div>
+                        <a href="https://prezi.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<!-- ÖRNEK: -->
-<div class="main-content">
+        <section id="veri" class="category-section" data-collapsed="true">
+            <div class="category-header">
+                📊 VERİ VE EXCEL
+                <span class="category-toggle"><span class="chev"></span> Aç/Kapat</span>
+            </div>
+            <div class="category-body">
+                <div class="grid">
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Formula Bot</div><div class="price-badge p-freemium">Kısmi Ücretsiz</div></div>
+                        <div class="card-desc">Excel'de ne yapmak istediğini yaz (örn: A sütununu topla), sana formülü versin.</div>
+                        <a href="https://formulabot.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Julius AI</div><div class="price-badge p-freemium">Aylık Mesaj</div></div>
+                        <div class="card-desc">Veri analizi uzmanı. Excel dosyanı yükle, "Satış trendini çiz" de, grafiği çizsin.</div>
+                        <a href="https://julius.ai/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Rows.com</div><div class="price-badge p-free">Tamamen Ücretsiz</div></div>
+                        <div class="card-desc">İçinde yapay zeka (ChatGPT) gömülü olan yeni nesil ücretsiz Excel alternatifi.</div>
+                        <a href="https://rows.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">ChatDOC</div><div class="price-badge p-freemium">Günlük Limit</div></div>
+                        <div class="card-desc">Sadece PDF değil, Word ve Excel dosyalarıyla da sohbet edip veri çekebilirsin.</div>
+                        <a href="https://chatdoc.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Arcwise AI</div><div class="price-badge p-free">Tamamen Ücretsiz</div></div>
+                        <div class="card-desc">Google Sheets eklentisi. Tablolarını anlar ve senin yerine doldurur.</div>
+                        <a href="https://arcwise.app/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Ajelix</div><div class="price-badge p-freemium">Kısmi Ücretsiz</div></div>
+                        <div class="card-desc">Excel formülleri yazar, VBA kodları üretir ve Google Apps Script yazar.</div>
+                        <a href="https://ajelix.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">SheetAI</div><div class="price-badge p-freemium">Kısmi Ücretsiz</div></div>
+                        <div class="card-desc">Google E-Tablolar içinde ChatGPT gücünü kullanmanı sağlar.</div>
+                        <a href="https://www.sheetai.app/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<section id="yazilim" class="category-section" data-collapsed="false">
-<div class="category-header">💻 YAZILIM VE KODLAMA <span><span class="chev"></span> Aç/Kapat</span></div>
-<div class="category-body">
-<div class="grid">
+        <section id="yazi" class="category-section" data-collapsed="true">
+            <div class="category-header">
+                📝 METİN YAZARLIĞI VE SEO
+                <span class="category-toggle"><span class="chev"></span> Aç/Kapat</span>
+            </div>
+            <div class="category-body">
+                <div class="grid">
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Copy.ai</div><div class="price-badge p-freemium">Kelimelik Limit</div></div>
+                        <div class="card-desc">Blog yazısı, Instagram açıklaması veya e-posta yazmak için pazarlama odaklı araç.</div>
+                        <a href="https://www.copy.ai/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Rytr</div><div class="price-badge p-free">Aylık 10k Karakter</div></div>
+                        <div class="card-desc">Türkçe desteği çok iyi olan, hızlı ve pratik içerik üretim asistanı.</div>
+                        <a href="https://rytr.me/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Writesonic</div><div class="price-badge p-freemium">Başlangıç Kredisi</div></div>
+                        <div class="card-desc">Google aramalarıyla güncel, SEO uyumlu makaleler yazabilen güçlü bir araç.</div>
+                        <a href="https://writesonic.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Hemingway</div><div class="price-badge p-free">Tamamen Ücretsiz</div></div>
+                        <div class="card-desc">Yapay zeka ile cümlelerini kısaltır, sadeleştirir ve okunabilirliğini artırır.</div>
+                        <a href="https://hemingwayapp.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Wordtune</div><div class="price-badge p-freemium">Günlük 10 Düzeltme</div></div>
+                        <div class="card-desc">Yazdığın cümleyi "daha resmi", "daha samimi" veya "daha kısa" olarak yeniden yazar.</div>
+                        <a href="https://www.wordtune.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">TextBlaze</div><div class="price-badge p-free">Tamamen Ücretsiz</div></div>
+                        <div class="card-desc">Sürekli yazdığın e-postaları veya mesajları kısayollarla otomatik tamamlar.</div>
+                        <a href="https://blaze.today/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Jenni AI</div><div class="price-badge p-freemium">Günlük Limit</div></div>
+                        <div class="card-desc">Akademik yazılar ve makaleler için cümleyi senin yerine tamamlayan asistan.</div>
+                        <a href="https://jenni.ai/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<div class="card" data-price="free" data-tags="individual,fast">
-<div class="card-header"><div class="card-title">Codeium</div><div class="price-badge p-free">Ücretsiz</div></div>
-<div class="card-desc">Bireysel kullanım için ücretsiz kod asistanı.</div>
-<a href="https://codeium.com" class="visit-btn" target="_blank">Aracı İncele</a>
-</div>
+        <section id="3d" class="category-section" data-collapsed="true">
+            <div class="category-header">
+                🎮 3D VE OYUN TASARIMI
+                <span class="category-toggle"><span class="chev"></span> Aç/Kapat</span>
+            </div>
+            <div class="category-body">
+                <div class="grid">
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Spline AI</div><div class="price-badge p-freemium">Kısmi Ücretsiz</div></div>
+                        <div class="card-desc">Tarayıcıda 3D tasarım yapma aracı. "Bir masa çiz" diyerek model oluşturabilirsin.</div>
+                        <a href="https://spline.design/ai" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Luma Genie</div><div class="price-badge p-free">Tamamen Ücretsiz</div></div>
+                        <div class="card-desc">Discord üzerinden çalışır. Metin yazarsın, sana indirilebilir 3D model verir.</div>
+                        <a href="https://lumalabs.ai/genie" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Skybox AI</div><div class="price-badge p-free">Tamamen Ücretsiz</div></div>
+                        <div class="card-desc">Oyunlar için 360 derece gökyüzü (skybox) ve sanal gerçeklik ortamları çizer.</div>
+                        <a href="https://skybox.blockadelabs.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Meshy</div><div class="price-badge p-freemium">Kredili Sistem</div></div>
+                        <div class="card-desc">Fotoğrafını yüklediğin objeyi veya yazdığın metni 3D modele dönüştürür.</div>
+                        <a href="https://www.meshy.ai/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Scenario</div><div class="price-badge p-freemium">Başlangıç Kredisi</div></div>
+                        <div class="card-desc">Kendi oyun varlıklarını (karakter, silah, iksir şişesi) eğitip üretebilirsin.</div>
+                        <a href="https://www.scenario.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">CSM AI</div><div class="price-badge p-freemium">Kısmi Ücretsiz</div></div>
+                        <div class="card-desc">Tek bir resimden (Cube) 3 boyutlu oynatılabilir model yaratır.</div>
+                        <a href="https://csm.ai/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-</div>
-<div class="empty-note">Bu filtrelerle bu kategoride sonuç yok.</div>
-</div>
-</section>
+        <section id="saglik" class="category-section" data-collapsed="true">
+            <div class="category-header">
+                🌿 SAĞLIK VE YAŞAM
+                <span class="category-toggle"><span class="chev"></span> Aç/Kapat</span>
+            </div>
+            <div class="category-body">
+                <div class="grid">
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Woebot</div><div class="price-badge p-free">Tamamen Ücretsiz</div></div>
+                        <div class="card-desc">Bilişsel davranışçı terapi teknikleri kullanan, dertleşebileceğin psikolojik destek botu.</div>
+                        <a href="https://woebothealth.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Goblin Tools</div><div class="price-badge p-free">Tamamen Ücretsiz</div></div>
+                        <div class="card-desc">"Odayı topla" gibi zor gelen görevleri senin için yönetilebilir küçük adımlara böler.</div>
+                        <a href="https://goblin.tools/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Wysa</div><div class="price-badge p-freemium">Kısmi Ücretsiz</div></div>
+                        <div class="card-desc">Stres ve kaygı yönetimi için anonim, yapay zeka destekli sohbet arkadaşı.</div>
+                        <a href="https://www.wysa.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">FitnessAI</div><div class="price-badge p-trial">Deneme Sürümü</div></div>
+                        <div class="card-desc">Sana özel spor ve antrenman programı hazırlayan kişisel koç.</div>
+                        <a href="https://www.fitnessai.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">ChefGPT</div><div class="price-badge p-freemium">Kısmi Ücretsiz</div></div>
+                        <div class="card-desc">Evdeki malzemeleri yaz (örn: yumurta, domates), sana yapabileceğin tarifleri versin.</div>
+                        <a href="https://chefgpt.xyz/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Interior AI</div><div class="price-badge p-freemium">Günlük Limit</div></div>
+                        <div class="card-desc">Odanın fotoğrafını çek, "Modern İskandinav" de, sana yeniden dekore etsin.</div>
+                        <a href="https://interiorai.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Tripnotes</div><div class="price-badge p-free">Tamamen Ücretsiz</div></div>
+                        <div class="card-desc">Gideceğin şehir için yapay zeka ile saniyeler içinde seyahat planı oluşturur.</div>
+                        <a href="https://tripnotes.ai/app" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-</div>
+        <section id="akademik" class="category-section" data-collapsed="true">
+            <div class="category-header">
+                🎓 AKADEMİK ARAŞTIRMA
+                <span class="category-toggle"><span class="chev"></span> Aç/Kapat</span>
+            </div>
+            <div class="category-body">
+                <div class="grid">
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">NotebookLM</div><div class="price-badge p-free">Tamamen Ücretsiz</div></div>
+                        <div class="card-desc">Google'ın aracı. PDF ve notlarını yükle, tamamen ücretsiz analiz etsin.</div>
+                        <a href="https://notebooklm.google.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Consensus</div><div class="price-badge p-freemium">Kısmi Ücretsiz</div></div>
+                        <div class="card-desc">Bilimsel makale arama motoru. Sınırsız arama, sınırlı yapay zeka özeti.</div>
+                        <a href="https://consensus.app/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Elicit</div><div class="price-badge p-freemium">Başlangıç Kredisi</div></div>
+                        <div class="card-desc">Literatür taraması için 5.000 kredi hediye eder, sonra ücretli.</div>
+                        <a href="https://elicit.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">SciSpace</div><div class="price-badge p-freemium">Kısmi Ücretsiz</div></div>
+                        <div class="card-desc">Makale okuma asistanı. Temel özellikler ücretsiz, gelişmişler ücretli.</div>
+                        <a href="https://typeset.io/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">ResearchRabbit</div><div class="price-badge p-free">Tamamen Ücretsiz</div></div>
+                        <div class="card-desc">Makaleler arası bağlantıları kuran 'Spotify benzeri' keşif aracı.</div>
+                        <a href="https://www.researchrabbit.ai/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Semantic Scholar</div><div class="price-badge p-free">Tamamen Ücretsiz</div></div>
+                        <div class="card-desc">Yapay zeka destekli, tamamen ücretsiz akademik arama motoru.</div>
+                        <a href="https://www.semanticscholar.org/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Connected Papers</div><div class="price-badge p-freemium">Ayda 5 Harita</div></div>
+                        <div class="card-desc">Makale ağ haritası çıkarma. Ayda 5 harita ücretsiz.</div>
+                        <a href="https://www.connectedpapers.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Scholarcy</div><div class="price-badge p-trial">Deneme Sürümü</div></div>
+                        <div class="card-desc">Makaleleri özetleyip karta dönüştürür. 14 gün ücretsiz deneme var.</div>
+                        <a href="https://www.scholarcy.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<script>
-(function(){
-  const cards = [...document.querySelectorAll('.card')];
-  const sections = [...document.querySelectorAll('.category-section')];
+        <section id="ses" class="category-section" data-collapsed="true">
+            <div class="category-header">
+                🎵 SES VE MÜZİK
+                <span class="category-toggle"><span class="chev"></span> Aç/Kapat</span>
+            </div>
+            <div class="category-body">
+                <div class="grid">
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">ElevenLabs</div><div class="price-badge p-freemium">Aylık Karakter</div></div>
+                        <div class="card-desc">En iyi seslendirme. Ayda 10.000 karakter (yaklaşık 10 dk) ücretsiz.</div>
+                        <a href="https://elevenlabs.io/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Suno AI</div><div class="price-badge p-freemium">Günlük Kredi</div></div>
+                        <div class="card-desc">Şarkı yapma aracı. Her gün ücretsiz şarkı üretme hakkı verir.</div>
+                        <a href="https://suno.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Udio</div><div class="price-badge p-freemium">Aylık Limit</div></div>
+                        <div class="card-desc">Yüksek kaliteli müzik üretimi. Ayda belirli sayıda ücretsiz üretim var.</div>
+                        <a href="https://www.udio.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Adobe Podcast</div><div class="price-badge p-free">Tamamen Ücretsiz</div></div>
+                        <div class="card-desc">Ses temizleme (Enhance Speech) özelliği tamamen ücretsizdir.</div>
+                        <a href="https://podcast.adobe.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Lalal.ai</div><div class="price-badge p-trial">Kısıtlı Önizleme</div></div>
+                        <div class="card-desc">Şarkıdan vokal ayırma. Ücretsiz sürümde sadece dinlemeye izin verir.</div>
+                        <a href="https://www.lalal.ai/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Soundraw</div><div class="price-badge p-freemium">Kısıtlı Ücretsiz</div></div>
+                        <div class="card-desc">Telif sorunu olmayan fon müziği üretir. Ücretsiz sürümde indirme yok.</div>
+                        <a href="https://soundraw.io/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Vocal Remover</div><div class="price-badge p-free">Tamamen Ücretsiz</div></div>
+                        <div class="card-desc">Basit ve etkili vokal ayırma ve ton değiştirme sitesi. Tamamen bedava.</div>
+                        <a href="https://vocalremover.org/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  const searchInput = document.getElementById('searchInput');
-  const priceChecks = [...document.querySelectorAll('#priceChecks input')];
-  const tagChecks = [...document.querySelectorAll('#tagChecks input')];
-  const resultCount = document.getElementById('resultCount');
-  const clearBtn = document.getElementById('clearBtn');
+        <section id="video" class="category-section" data-collapsed="true">
+            <div class="category-header">
+                🎬 VİDEO VE ANİMASYON
+                <span class="category-toggle"><span class="chev"></span> Aç/Kapat</span>
+            </div>
+            <div class="category-body">
+                <div class="grid">
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Runway</div><div class="price-badge p-freemium">Başlangıç Kredisi</div></div>
+                        <div class="card-desc">Profesyonel video üretimi. Başlangıçta 125 kredi hediye eder.</div>
+                        <a href="https://runwayml.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Kling AI</div><div class="price-badge p-freemium">Günlük Kredi</div></div>
+                        <div class="card-desc">Sora rakibi yeni model. Şu an günlük 66 ücretsiz kredi veriyor.</div>
+                        <a href="https://klingai.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Luma Dream Machine</div><div class="price-badge p-freemium">Aylık Limit</div></div>
+                        <div class="card-desc">Gerçekçi video üretimi. Ayda 30 ücretsiz video hakkı tanır.</div>
+                        <a href="https://lumalabs.ai/dream-machine" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">HeyGen</div><div class="price-badge p-trial">1 Kredi Deneme</div></div>
+                        <div class="card-desc">Avatar konuşturma. Sadece 1 dakikalık deneme videosu ücretsizdir.</div>
+                        <a href="https://www.heygen.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">CapCut</div><div class="price-badge p-free">Tamamen Ücretsiz</div></div>
+                        <div class="card-desc">Mobil ve PC'de çoğu yapay zeka özelliği ücretsiz olan en iyi editör.</div>
+                        <a href="https://www.capcut.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Pika Art</div><div class="price-badge p-freemium">Günlük Kredi</div></div>
+                        <div class="card-desc">Videoları canlandırma ve değiştirme. Başlangıç kredisi ve günlük yenileme var.</div>
+                        <a href="https://pika.art/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Viggle AI</div><div class="price-badge p-free">Tamamen Ücretsiz</div></div>
+                        <div class="card-desc">Discord üzerinden karakterleri dans ettirme ve hareketlendirme (Meme yapımı).</div>
+                        <a href="https://viggle.ai/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Topaz Video AI</div><div class="price-badge p-paid">Ücretli</div></div>
+                        <div class="card-desc">Video kalitesi yükseltme. Sadece ücretli satılır, denemesi filigranlıdır.</div>
+                        <a href="https://www.topazlabs.com/topaz-video-ai" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  // Tag rozetlerini otomatik bas (istersen kaldırabilirsin)
-  const TAGS = {
-    student:"🎓 Öğrenci",
-    individual:"👤 Bireysel",
-    pro:"💼 Pro",
-    fast:"⚡ Hızlı",
-    deep:"🧠 Derin",
-    beta:"🧪 Beta"
-  };
+        <!-- Varsayılan AÇIK -->
+        <section id="genel" class="category-section" data-collapsed="false">
+            <div class="category-header">
+                🧠 GENEL ASİSTANLAR
+                <span class="category-toggle"><span class="chev"></span> Aç/Kapat</span>
+            </div>
+            <div class="category-body">
+                <div class="grid">
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">ChatGPT</div><div class="price-badge p-freemium">Kısmi Ücretsiz</div></div>
+                        <div class="card-desc">4o-mini modeli sınırsız ücretsiz. 4o modeli günlük limitli ücretsiz.</div>
+                        <a href="https://chat.openai.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Microsoft Copilot</div><div class="price-badge p-free">Tamamen Ücretsiz</div></div>
+                        <div class="card-desc">GPT-4 teknolojisini ve DALL-E 3'ü ücretsiz ve limitsiz sunar.</div>
+                        <a href="https://copilot.microsoft.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Google Gemini</div><div class="price-badge p-freemium">Kısmi Ücretsiz</div></div>
+                        <div class="card-desc">Hızlı sürüm (Flash) tamamen ücretsiz. Gelişmiş sürüm ücretli.</div>
+                        <a href="https://gemini.google.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Perplexity</div><div class="price-badge p-freemium">Kısmi Ücretsiz</div></div>
+                        <div class="card-desc">Günlük sınırlı sayıda "Pro" arama ücretsiz. Standart arama sınırsız.</div>
+                        <a href="https://www.perplexity.ai/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">DeepL</div><div class="price-badge p-freemium">Kısmi Ücretsiz</div></div>
+                        <div class="card-desc">Metin çevirisi ücretsiz. Dosya çevirisi sayıca limitli.</div>
+                        <a href="https://www.deepl.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Gamma</div><div class="price-badge p-freemium">Başlangıç Kredisi</div></div>
+                        <div class="card-desc">Sunum hazırlama. Kayıtta 400 kredi verir (yaklaşık 10 sunum).</div>
+                        <a href="https://gamma.app/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Mistral AI</div><div class="price-badge p-free">Tamamen Ücretsiz</div></div>
+                        <div class="card-desc">Avrupa menşeli, çok güçlü açık kaynaklı model. Le Chat servisi ücretsiz.</div>
+                        <a href="https://chat.mistral.ai/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Groq</div><div class="price-badge p-free">Tamamen Ücretsiz</div></div>
+                        <div class="card-desc">Dünyanın en hızlı yapay zeka yanıt sistemi. Şu an beta sürecinde ücretsiz.</div>
+                        <a href="https://groq.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  cards.forEach(card=>{
-    if(card.querySelector('.tag-row')) return;
-    const row = document.createElement('div');
-    row.className = 'tag-row';
-    (card.dataset.tags || '').split(',').map(x=>x.trim()).filter(Boolean).forEach(t=>{
-      const s = document.createElement('span');
-      s.className = 'tag';
-      s.textContent = TAGS[t] || t;
-      row.appendChild(s);
-    });
-    const header = card.querySelector('.card-header');
-    if (header) header.after(row);
-  });
+    </div>
 
-  function getCheckedValues(inputs){
-    return inputs.filter(i=>i.checked).map(i=>i.value);
-  }
+    <script>
+        (function () {
+            const sections = Array.from(document.querySelectorAll('.category-section'));
 
-  // ✅ Kategori accordion durumunu (data-collapsed) gerçek max-height'e çevirir
-  function syncAccordionHeights(){
-    sections.forEach(sec=>{
-      const body = sec.querySelector('.category-body');
-      if (!body) return;
+            function setHeights() {
+                sections.forEach(sec => {
+                    const body = sec.querySelector('.category-body');
+                    if (!body) return;
 
-      if (sec.dataset.collapsed === "true") {
-        body.style.maxHeight = "0px";
-      } else {
-        body.style.maxHeight = body.scrollHeight + "px";
-      }
-    });
-  }
+                    if (sec.getAttribute('data-collapsed') === 'true') {
+                        body.style.maxHeight = '0px';
+                    } else {
+                        body.style.maxHeight = body.scrollHeight + 'px';
+                    }
+                });
+            }
 
-  function applyFilters(){
-    const q = (searchInput?.value || '').toLowerCase().trim();
-    const selectedPrices = getCheckedValues(priceChecks); // OR
-    const selectedTags = getCheckedValues(tagChecks);     // AND
+            function toggleSection(sec) {
+                const body = sec.querySelector('.category-body');
+                if (!body) return;
 
-    let shown = 0;
+                const collapsed = sec.getAttribute('data-collapsed') === 'true';
+                sec.setAttribute('data-collapsed', collapsed ? 'false' : 'true');
 
-    cards.forEach(card=>{
-      const price = card.dataset.price || '';
-      const tags = (card.dataset.tags || '').split(',').map(x=>x.trim()).filter(Boolean);
+                if (collapsed) {
+                    body.style.maxHeight = body.scrollHeight + 'px';
+                } else {
+                    body.style.maxHeight = '0px';
+                }
+            }
 
-      const text = (card.textContent || '').toLowerCase();
+            // Click binding
+            sections.forEach(sec => {
+                const header = sec.querySelector('.category-header');
+                if (!header) return;
+                header.addEventListener('click', () => toggleSection(sec));
+            });
 
-      const searchOK = !q || text.includes(q);
-      const priceOK  = selectedPrices.length === 0 || selectedPrices.includes(price);
-      const tagsOK   = selectedTags.length === 0 || selectedTags.every(t => tags.includes(t));
+            // Initial
+            setHeights();
 
-      const visible = searchOK && priceOK && tagsOK;
-
-      card.classList.toggle('hidden-by-filter', !visible);
-      if (visible) shown++;
-    });
-
-    if (resultCount) resultCount.textContent = `${shown} / ${cards.length}`;
-
-    // Kategori bazlı boşluk işaretle + açık olanların yüksekliğini güncelle
-    sections.forEach(sec=>{
-      const visibleCards = sec.querySelectorAll('.card:not(.hidden-by-filter)').length;
-      sec.dataset.empty = (visibleCards === 0) ? "true" : "false";
-
-      const body = sec.querySelector('.category-body');
-      if (!body) return;
-
-      if (sec.dataset.collapsed !== "true") {
-        body.style.maxHeight = body.scrollHeight + "px";
-      }
-    });
-  }
-
-  function clearAll(){
-    if (searchInput) searchInput.value = '';
-    priceChecks.forEach(i=>i.checked=false);
-    tagChecks.forEach(i=>i.checked=false);
-    applyFilters();
-  }
-
-  // ✅ Accordion click
-  document.querySelectorAll('.category-header').forEach(header=>{
-    header.addEventListener('click', ()=>{
-      const sec = header.closest('.category-section');
-      if (!sec) return;
-
-      const body = sec.querySelector('.category-body');
-      if (!body) return;
-
-      const closed = (sec.dataset.collapsed === "true");
-      sec.dataset.collapsed = closed ? "false" : "true";
-
-      body.style.maxHeight = closed ? (body.scrollHeight + "px") : "0px";
-    });
-  });
-
-  // Filtre eventleri
-  if (searchInput) searchInput.addEventListener('input', applyFilters);
-  [...priceChecks, ...tagChecks].forEach(i=>i.addEventListener('change', applyFilters));
-  if (clearBtn) clearBtn.addEventListener('click', clearAll);
-
-  // ✅ İlk yükleme: HTML'de verdiğin data-collapsed durumunu uygula
-  syncAccordionHeights();
-
-  // ✅ İlk yükleme: filtre sayacı / empty state
-  applyFilters();
-
-  // ✅ Resize: sadece açık olanların yüksekliklerini düzelt
-  window.addEventListener('resize', ()=>{
-    sections.forEach(sec=>{
-      if (sec.dataset.collapsed === "true") return;
-      const body = sec.querySelector('.category-body');
-      if (body) body.style.maxHeight = body.scrollHeight + "px";
-    });
-  });
-
-})();
-</script>
-
+            // Resize: açık olanların yüksekliğini güncelle
+            window.addEventListener('resize', () => {
+                sections.forEach(sec => {
+                    if (sec.getAttribute('data-collapsed') === 'true') return;
+                    const body = sec.querySelector('.category-body');
+                    if (!body) return;
+                    body.style.maxHeight = body.scrollHeight + 'px';
+                });
+            });
+        })();
+    </script>
 
 </body>
 </html>
-
