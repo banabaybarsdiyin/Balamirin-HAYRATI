@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Balamir'in İrfan Pınarı | Cyber-Hayrat V2</title>
+    <title>Balamir'in Hayratı | Yapay Zeka Arşivi</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; }
@@ -43,93 +43,37 @@
         /* --- HEADER --- */
         header { 
             text-align: center; 
-            max-width: 900px; 
-            padding: 50px 20px 30px; 
+            max-width: 1000px; 
+            padding: 60px 20px 40px; 
             animation: slideDown 1s ease-out; 
         }
 
         h1 {
             color: #fff;
             font-size: 3.5rem;
-            margin: 0 0 10px 0;
+            margin: 0 0 20px 0;
             font-weight: 700;
             letter-spacing: -2px;
+            text-transform: uppercase;
             text-shadow: 0 0 30px var(--glow);
         }
 
-        .badge {
-            display: inline-block;
-            background: rgba(239, 68, 68, 0.15);
-            color: var(--primary);
-            padding: 8px 16px;
-            border-radius: 99px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border: 1px solid var(--primary);
-            box-shadow: 0 0 15px var(--glow);
-            margin-bottom: 20px;
-        }
-        .subtitle { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; line-height: 1.6; }
-
-        /* --- CHAT KUTUSU --- */
-        .chat-wrapper {
-            width: 100%;
-            padding: 0 20px;
-            display: flex;
-            justify-content: center;
-            margin-bottom: 40px;
+        .subtitle { 
+            color: #cbd5e1; 
+            font-size: 1.15rem; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            line-height: 1.8; 
+            font-weight: 400;
+            border-left: 3px solid var(--primary);
+            padding-left: 20px;
+            text-align: left;
+            background: rgba(255,255,255,0.03);
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
         }
 
-        .chat-container {
-            width: 100%; max-width: 800px;
-            background: rgba(20, 20, 25, 0.8);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            display: flex; flex-direction: column; height: 500px;
-            animation: fadeIn 1.2s ease-out;
-            position: relative;
-        }
-
-        .chat-container::before {
-            content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
-            background: linear-gradient(45deg, var(--primary), transparent, transparent, var(--primary));
-            z-index: -1; border-radius: 26px; opacity: 0.3;
-        }
-
-        .chat-header {
-            background: rgba(239, 68, 68, 0.1);
-            border-bottom: 1px solid var(--border);
-            padding: 15px; text-align: center;
-            color: var(--primary); font-weight: 700; letter-spacing: 2px; font-size: 0.9rem;
-        }
-
-        .chat-messages {
-            flex: 1; padding: 30px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px;
-            scroll-behavior: smooth;
-        }
-
-        .message { padding: 15px 20px; border-radius: 18px; max-width: 85%; font-size: 1rem; line-height: 1.5; }
-        .bot-msg { background: rgba(255, 255, 255, 0.05); color: #e2e8f0; align-self: flex-start; border: 1px solid var(--border); border-bottom-left-radius: 4px; }
-        .user-msg { background: var(--primary); color: white; align-self: flex-end; border-bottom-right-radius: 4px; box-shadow: 0 5px 15px var(--glow); }
-
-        .chat-input-area { padding: 20px; background: rgba(0,0,0,0.2); display: flex; gap: 15px; border-top: 1px solid var(--border); }
-        .chat-input {
-            flex: 1; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border);
-            padding: 15px; border-radius: 12px; color: white; outline: none; font-size: 1rem; transition: 0.3s;
-            font-family: 'Space Grotesk', sans-serif;
-        }
-        .chat-input:focus { border-color: var(--primary); background: rgba(255, 255, 255, 0.1); box-shadow: 0 0 15px var(--glow); }
-        .send-btn {
-            background: var(--primary); border: none; width: 50px; height: 50px; border-radius: 12px;
-            color: white; cursor: pointer; display: flex; align-items: center; justify-content: center;
-            transition: 0.3s; font-size: 1.2rem;
-        }
-        .send-btn:hover { transform: scale(1.1); box-shadow: 0 0 20px var(--glow); }
-
-        /* --- STICKY NAVIGASYON (YENİ) --- */
+        /* --- STICKY NAVIGASYON --- */
         nav {
             position: sticky;
             top: 0;
@@ -139,7 +83,7 @@
             border-bottom: 1px solid var(--border);
             z-index: 1000;
             padding: 15px 0;
-            margin-bottom: 30px;
+            margin-bottom: 50px;
             overflow-x: auto;
             white-space: nowrap;
         }
@@ -149,7 +93,7 @@
             margin: 0 auto;
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 15px;
             padding: 0 20px;
         }
 
@@ -158,7 +102,7 @@
             text-decoration: none;
             padding: 8px 16px;
             border-radius: 99px;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -172,12 +116,6 @@
             background: rgba(255,255,255,0.05);
         }
 
-        nav a.active { /* Aktif link için JS eklenebilir ama şimdilik hover mantığı */
-            color: var(--primary);
-            border-color: var(--primary);
-            background: rgba(239, 68, 68, 0.1);
-        }
-
         /* --- İÇERİK IZGARASI --- */
         .main-content {
             width: 100%;
@@ -187,28 +125,28 @@
         }
 
         .category-section {
-            scroll-margin-top: 100px; /* Sticky nav altında kalmaması için */
-            margin-bottom: 60px;
+            scroll-margin-top: 100px; 
+            margin-bottom: 80px;
         }
 
         .category-header {
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 4px;
-            color: #64748b;
+            color: #ef4444; /* Başlıklar artık kırmızı */
             margin-bottom: 25px;
             display: flex;
             align-items: center;
             gap: 15px;
         }
         .category-header::after { content: ''; height: 1px; flex: 1; background: #334155; }
-        .category-icon { color: var(--primary); font-size: 1.2rem; }
+        .category-icon { color: #fff; font-size: 1.2rem; }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
         }
 
         .card {
@@ -238,13 +176,33 @@
             font-size: 0.8rem; font-weight: 800; color: rgba(255,255,255,0.2);
         }
 
-        .card-title { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 10px; padding-right: 20px; }
+        .card-title { font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 10px; padding-right: 20px; }
         .card-desc { font-size: 0.95rem; color: #a1a1aa; margin-bottom: 20px; flex-grow: 1; line-height: 1.5; }
         
         .tag {
-            display: inline-block; font-size: 0.75rem; padding: 4px 8px;
-            background: rgba(239, 68, 68, 0.1); color: var(--primary);
+            display: inline-block; font-size: 0.75rem; padding: 4px 10px;
+            background: rgba(239, 68, 68, 0.15); color: var(--primary);
             border-radius: 6px; font-weight: 600; margin-bottom: 15px; align-self: flex-start;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        /* Visit Button */
+        .visit-btn {
+            display: inline-block;
+            margin-top: auto;
+            text-decoration: none;
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 10px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .visit-btn:hover {
+            background: var(--primary);
+            color: #000;
         }
 
         /* Animasyonlar */
@@ -261,144 +219,254 @@
         /* Mobil */
         @media (max-width: 768px) {
             body { padding-bottom: 40px; }
-            h1 { font-size: 2rem; }
+            h1 { font-size: 2.5rem; }
+            .subtitle { font-size: 1rem; text-align: left; border-left: 2px solid var(--primary); }
             .nav-container { justify-content: flex-start; padding: 0 15px; }
             .grid { grid-template-columns: 1fr; }
-            .chat-container { height: 400px; border-radius: 0; border-left: none; border-right: none; }
-            .chat-wrapper { padding: 0; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="badge">SÜRÜM 2.1 • İRFAN PINARI</div>
         <h1>BALAMİR'İN HAYRATI</h1>
-        <div class="subtitle">"Türk gençliğine armağan edilen, kotası devlet korumalı, yapay zeka ve ilim cephaneliği."</div>
-    </header>
-
-    <div class="chat-wrapper">
-        <div class="chat-container">
-            <div class="chat-header">🔴 YZ DANIŞMA HATTI (GÜNLÜK KOTA: 15)</div>
-            <div class="chat-messages" id="messages">
-                <div class="message bot-msg">
-                    Selamun Aleyküm yiğidim. Sosyoloji, tez, kod veya memleket meselesi... Sor bakalım, ilim haznemizden cevaplayalım.
-                </div>
-            </div>
-            <div class="chat-input-area">
-                <input type="text" class="chat-input" id="userInput" placeholder="Sualini buraya yaz..." onkeypress="handleEnter(event)">
-                <button class="send-btn" onclick="sendMessage()">➤</button>
-            </div>
+        <div class="subtitle">
+            ChatGPT altyapısını kullanan ve tamamen ücretsiz yapay zeka araçlarını işlevlerine göre sınıflandıran bu platform Balamir'in emekleriyle Yüce TÜRK GENÇLİĞİNİN hizmetine sunulmuş vatani bir hizmettir.
         </div>
-    </div>
+    </header>
 
     <nav>
         <div class="nav-container">
             <a href="#yazilim">💻 Yazılım</a>
-            <a href="#gorsel">🎨 Suret</a>
-            <a href="#akademik">🎓 İlim</a>
-            <a href="#ses">🎵 Sada</a>
-            <a href="#video">🎬 Hareket</a>
-            <a href="#genel">🧠 Umumi</a>
+            <a href="#gorsel">🎨 Görsel</a>
+            <a href="#akademik">🎓 Akademik</a>
+            <a href="#ses">🎵 Ses & Müzik</a>
+            <a href="#video">🎬 Video</a>
+            <a href="#genel">🧠 Genel</a>
         </div>
     </nav>
 
     <div class="main-content">
 
         <section id="yazilim" class="category-section">
-            <div class="category-header"><span class="category-icon">💻</span> HENDESE VE YAZILIM</div>
+            <div class="category-header"><span class="category-icon">💻</span> YAZILIM VE KODLAMA</div>
             <div class="grid">
-                <div class="card"><span class="rank">#1</span><div class="card-title">GitHub Copilot</div><span class="tag">Kod Asistanı</span><div class="card-desc">VS Code ile mükemmel entegrasyon. Kod tamamlamanın piri.</div></div>
-                <div class="card"><span class="rank">#2</span><div class="card-title">Cursor</div><span class="tag">AI IDE</span><div class="card-desc">Yapay zeka entegreli, VS Code tabanlı modern geliştirme ortamı.</div></div>
-                <div class="card"><span class="rank">#3</span><div class="card-title">Claude 3.5 Sonnet</div><span class="tag">Mantık</span><div class="card-desc">Karmaşık kod mantığı ve hata ayıklamada şu an en zehir model.</div></div>
-                <div class="card"><span class="rank">#4</span><div class="card-title">Replit</div><span class="tag">Bulut IDE</span><div class="card-desc">Kurulumsuz, tarayıcıda kod yaz ve anında çalıştır.</div></div>
-                <div class="card"><span class="rank">#5</span><div class="card-title">Blackbox AI</div><span class="tag">Soru/Cevap</span><div class="card-desc">Yazılımcılar için özelleşmiş, kod odaklı arama motoru.</div></div>
-                <div class="card"><span class="rank">#6</span><div class="card-title">Tabnine</div><span class="tag">Gizlilik</span><div class="card-desc">Yerel makinede çalışabilen, kodunu dışarı sızdırmayan asistan.</div></div>
+                <div class="card">
+                    <span class="rank">#1</span>
+                    <span class="tag">Kod Asistanı</span>
+                    <div class="card-title">GitHub Copilot</div>
+                    <div class="card-desc">VS Code ile mükemmel entegrasyon. Kod tamamlamanın lideri.</div>
+                    <a href="https://github.com/features/copilot" target="_blank" class="visit-btn">Aracı İncele</a>
+                </div>
+                <div class="card">
+                    <span class="rank">#2</span>
+                    <span class="tag">AI Editör</span>
+                    <div class="card-title">Cursor</div>
+                    <div class="card-desc">Yapay zeka entegreli, VS Code tabanlı modern geliştirme ortamı.</div>
+                    <a href="https://cursor.sh/" target="_blank" class="visit-btn">Aracı İncele</a>
+                </div>
+                <div class="card">
+                    <span class="rank">#3</span>
+                    <span class="tag">Kod Mantığı</span>
+                    <div class="card-title">Claude 3.5 Sonnet</div>
+                    <div class="card-desc">Karmaşık kod mantığı ve hata ayıklamada şu an en başarılı model.</div>
+                    <a href="https://claude.ai/" target="_blank" class="visit-btn">Aracı İncele</a>
+                </div>
+                <div class="card">
+                    <span class="rank">#4</span>
+                    <span class="tag">Bulut IDE</span>
+                    <div class="card-title">Replit</div>
+                    <div class="card-desc">Kurulumsuz, tarayıcıda kod yaz ve anında çalıştır.</div>
+                    <a href="https://replit.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                </div>
+                <div class="card">
+                    <span class="rank">#5</span>
+                    <span class="tag">Kod Arama</span>
+                    <div class="card-title">Blackbox AI</div>
+                    <div class="card-desc">Yazılımcılar için özelleşmiş, kod odaklı arama motoru.</div>
+                    <a href="https://www.blackbox.ai/" target="_blank" class="visit-btn">Aracı İncele</a>
+                </div>
             </div>
         </section>
 
         <section id="gorsel" class="category-section">
-            <div class="category-header"><span class="category-icon">🎨</span> SURET VE TASARIM</div>
+            <div class="category-header"><span class="category-icon">🎨</span> GÖRSEL TASARIM</div>
             <div class="grid">
-                <div class="card"><span class="rank">#1</span><div class="card-title">Midjourney v6</div><span class="tag">Sanat</span><div class="card-desc">Sanatsal kalite ve gerçekçilikte endüstri standardı.</div></div>
-                <div class="card"><span class="rank">#2</span><div class="card-title">DALL-E 3</div><span class="tag">Basitlik</span><div class="card-desc">ChatGPT içinde, dediğini en iyi anlayan ressam.</div></div>
-                <div class="card"><span class="rank">#3</span><div class="card-title">Leonardo.ai</div><span class="tag">Oyun/Asset</span><div class="card-desc">Günlük ücretsiz kredi verir, oyun karakterleri için birebir.</div></div>
-                <div class="card"><span class="rank">#4</span><div class="card-title">Recraft.ai</div><span class="tag">Vektör</span><div class="card-desc">Logo ve ikon tasarımları için en iyi vektörel çizim aracı.</div></div>
-                <div class="card"><span class="rank">#5</span><div class="card-title">Adobe Firefly</div><span class="tag">Düzenleme</span><div class="card-desc">Photoshop içinde 'buraya ağaç ekle' dediğinde ekleyen sihirbaz.</div></div>
-                <div class="card"><span class="rank">#6</span><div class="card-title">Magnific AI</div><span class="tag">Upscale</span><div class="card-desc">Çamur gibi resmi alıp 4K netliğine kavuşturan araç.</div></div>
+                <div class="card">
+                    <span class="rank">#1</span>
+                    <span class="tag">Sanat Üretimi</span>
+                    <div class="card-title">Midjourney v6</div>
+                    <div class="card-desc">Sanatsal kalite ve gerçekçilikte endüstri standardı.</div>
+                    <a href="https://www.midjourney.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                </div>
+                <div class="card">
+                    <span class="rank">#2</span>
+                    <span class="tag">Kolay Kullanım</span>
+                    <div class="card-title">DALL-E 3</div>
+                    <div class="card-desc">ChatGPT içinde, dediğini en iyi anlayan çizim aracı.</div>
+                    <a href="https://openai.com/dall-e-3" target="_blank" class="visit-btn">Aracı İncele</a>
+                </div>
+                <div class="card">
+                    <span class="rank">#3</span>
+                    <span class="tag">Oyun & Varlık</span>
+                    <div class="card-title">Leonardo.ai</div>
+                    <div class="card-desc">Günlük ücretsiz kredi verir, oyun karakterleri için birebir.</div>
+                    <a href="https://leonardo.ai/" target="_blank" class="visit-btn">Aracı İncele</a>
+                </div>
+                <div class="card">
+                    <span class="rank">#4</span>
+                    <span class="tag">Vektörel</span>
+                    <div class="card-title">Recraft.ai</div>
+                    <div class="card-desc">Logo ve ikon tasarımları için en iyi vektörel çizim aracı.</div>
+                    <a href="https://www.recraft.ai/" target="_blank" class="visit-btn">Aracı İncele</a>
+                </div>
+                <div class="card">
+                    <span class="rank">#5</span>
+                    <span class="tag">Fotoğraf Büyütme</span>
+                    <div class="card-title">Magnific AI</div>
+                    <div class="card-desc">Çamur gibi resmi alıp 4K netliğine kavuşturan araç.</div>
+                    <a href="https://magnific.ai/" target="_blank" class="visit-btn">Aracı İncele</a>
+                </div>
             </div>
         </section>
 
         <section id="akademik" class="category-section">
-            <div class="category-header"><span class="category-icon">🎓</span> İLİM VE ARAŞTIRMA</div>
+            <div class="category-header"><span class="category-icon">🎓</span> AKADEMİK ARAŞTIRMA</div>
             <div class="grid">
-                <div class="card"><span class="rank">#1</span><div class="card-title">Elicit</div><span class="tag">Literatür</span><div class="card-desc">Tez yazarken sağ kolun. Literatürü tarar, özetler.</div></div>
-                <div class="card"><span class="rank">#2</span><div class="card-title">Consensus</div><span class="tag">Bilim</span><div class="card-desc">"Bilim bu konuda ne diyor?" sorusuna makalelerle cevap verir.</div></div>
-                <div class="card"><span class="rank">#3</span><div class="card-title">SciSpace</div><span class="tag">PDF Analiz</span><div class="card-desc">PDF yükle, anlamadığın yeri sor, sana anlatsın.</div></div>
-                <div class="card"><span class="rank">#4</span><div class="card-title">NotebookLM</div><span class="tag">Ders Notu</span><div class="card-desc">Google'ın icadı. Kitaplarını yükle, sana özel hoca olsun.</div></div>
-                <div class="card"><span class="rank">#5</span><div class="card-title">Scholarcy</div><span class="tag">Özet</span><div class="card-desc">Upuzun makaleleri okumaz, senin için bilgi kartı haline getirir.</div></div>
-                <div class="card"><span class="rank">#6</span><div class="card-title">Connected Papers</div><span class="tag">Harita</span><div class="card-desc">Bir makalenin akrabalarını görsel ağ haritası olarak gösterir.</div></div>
+                <div class="card">
+                    <span class="rank">#1</span>
+                    <span class="tag">Literatür Tarama</span>
+                    <div class="card-title">Elicit</div>
+                    <div class="card-desc">Tez yazarken sağ kolun. Literatürü tarar, özetler.</div>
+                    <a href="https://elicit.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                </div>
+                <div class="card">
+                    <span class="rank">#2</span>
+                    <span class="tag">Bilimsel Cevap</span>
+                    <div class="card-title">Consensus</div>
+                    <div class="card-desc">"Bilim bu konuda ne diyor?" sorusuna makalelerle cevap verir.</div>
+                    <a href="https://consensus.app/" target="_blank" class="visit-btn">Aracı İncele</a>
+                </div>
+                <div class="card">
+                    <span class="rank">#3</span>
+                    <span class="tag">PDF Analiz</span>
+                    <div class="card-title">SciSpace</div>
+                    <div class="card-desc">PDF yükle, anlamadığın yeri sor, sana anlatsın.</div>
+                    <a href="https://typeset.io/" target="_blank" class="visit-btn">Aracı İncele</a>
+                </div>
+                <div class="card">
+                    <span class="rank">#4</span>
+                    <span class="tag">Ders Asistanı</span>
+                    <div class="card-title">NotebookLM</div>
+                    <div class="card-desc">Google'ın aracı. Kitaplarını yükle, sana özel hoca olsun.</div>
+                    <a href="https://notebooklm.google.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                </div>
             </div>
         </section>
 
         <section id="ses" class="category-section">
-            <div class="category-header"><span class="category-icon">🎵</span> SADA VE MUSİKİ</div>
+            <div class="category-header"><span class="category-icon">🎵</span> SES VE MÜZİK</div>
             <div class="grid">
-                <div class="card"><span class="rank">#1</span><div class="card-title">ElevenLabs</div><span class="tag">Seslendirme</span><div class="card-desc">Metni insan sesine çevirmede dünya markası. Türkçe desteği var.</div></div>
-                <div class="card"><span class="rank">#2</span><div class="card-title">Suno AI</div><span class="tag">Beste</span><div class="card-desc">Sözleri yaz, müzik türünü seç, sana hit şarkı yapsın.</div></div>
-                <div class="card"><span class="rank">#3</span><div class="card-title">Adobe Podcast</div><span class="tag">Temizlik</span><div class="card-desc">Telefonda alınan cızırtılı kaydı stüdyo kalitesine çevirir.</div></div>
-                <div class="card"><span class="rank">#4</span><div class="card-title">Lalal.ai</div><span class="tag">Ayrıştırma</span><div class="card-desc">Şarkıdan sesi siler, sadece müziği bırakır (veya tam tersi).</div></div>
+                <div class="card">
+                    <span class="rank">#1</span>
+                    <span class="tag">Seslendirme</span>
+                    <div class="card-title">ElevenLabs</div>
+                    <div class="card-desc">Metni insan sesine çevirmede dünya markası. Türkçe desteği var.</div>
+                    <a href="https://elevenlabs.io/" target="_blank" class="visit-btn">Aracı İncele</a>
+                </div>
+                <div class="card">
+                    <span class="rank">#2</span>
+                    <span class="tag">Müzik Üretimi</span>
+                    <div class="card-title">Suno AI</div>
+                    <div class="card-desc">Sözleri yaz, müzik türünü seç, sana hit şarkı yapsın.</div>
+                    <a href="https://suno.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                </div>
+                <div class="card">
+                    <span class="rank">#3</span>
+                    <span class="tag">Ses Temizleme</span>
+                    <div class="card-title">Adobe Podcast</div>
+                    <div class="card-desc">Telefonda alınan cızırtılı kaydı stüdyo kalitesine çevirir.</div>
+                    <a href="https://podcast.adobe.com/enhance" target="_blank" class="visit-btn">Aracı İncele</a>
+                </div>
+                <div class="card">
+                    <span class="rank">#4</span>
+                    <span class="tag">Enstrüman Ayırma</span>
+                    <div class="card-title">Lalal.ai</div>
+                    <div class="card-desc">Şarkıdan sesi siler, sadece müziği bırakır (veya tam tersi).</div>
+                    <a href="https://www.lalal.ai/" target="_blank" class="visit-btn">Aracı İncele</a>
+                </div>
             </div>
         </section>
 
         <section id="video" class="category-section">
-            <div class="category-header"><span class="category-icon">🎬</span> HAREKETLİ TASVİR</div>
+            <div class="category-header"><span class="category-icon">🎬</span> VİDEO VE ANİMASYON</div>
             <div class="grid">
-                <div class="card"><span class="rank">#1</span><div class="card-title">Runway Gen-3</div><span class="tag">Sinema</span><div class="card-desc">Metinden video oluşturmada en profesyonel araç.</div></div>
-                <div class="card"><span class="rank">#2</span><div class="card-title">HeyGen</div><span class="tag">Avatar</span><div class="card-desc">Kendi videonu çek, sonra klavyeden ne yazarsan onu söylesin.</div></div>
-                <div class="card"><span class="rank">#3</span><div class="card-title">CapCut AI</div><span class="tag">Kurgu</span><div class="card-desc">Otomatik altyazı ve efektler için en pratik mobil/pc aracı.</div></div>
-                <div class="card"><span class="rank">#4</span><div class="card-title">Topaz Video AI</div><span class="tag">Netleştirme</span><div class="card-desc">Çamur gibi eski videoları 4K yapar.</div></div>
+                <div class="card">
+                    <span class="rank">#1</span>
+                    <span class="tag">Sinematik Video</span>
+                    <div class="card-title">Runway Gen-3</div>
+                    <div class="card-desc">Metinden video oluşturmada en profesyonel araç.</div>
+                    <a href="https://runwayml.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                </div>
+                <div class="card">
+                    <span class="rank">#2</span>
+                    <span class="tag">Avatar Sunum</span>
+                    <div class="card-title">HeyGen</div>
+                    <div class="card-desc">Kendi videonu çek, sonra klavyeden ne yazarsan onu söylesin.</div>
+                    <a href="https://www.heygen.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                </div>
+                <div class="card">
+                    <span class="rank">#3</span>
+                    <span class="tag">Otomatik Kurgu</span>
+                    <div class="card-title">CapCut AI</div>
+                    <div class="card-desc">Otomatik altyazı ve efektler için en pratik mobil/pc aracı.</div>
+                    <a href="https://www.capcut.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                </div>
+                <div class="card">
+                    <span class="rank">#4</span>
+                    <span class="tag">Video İyileştirme</span>
+                    <div class="card-title">Topaz Video AI</div>
+                    <div class="card-desc">Çamur gibi eski videoları 4K kalitesine yükseltir.</div>
+                    <a href="https://www.topazlabs.com/topaz-video-ai" target="_blank" class="visit-btn">Aracı İncele</a>
+                </div>
             </div>
         </section>
 
         <section id="genel" class="category-section">
-            <div class="category-header"><span class="category-icon">🧠</span> UMUMİ ASİSTANLAR</div>
+            <div class="category-header"><span class="category-icon">🧠</span> GENEL ASİSTANLAR</div>
             <div class="grid">
-                <div class="card"><span class="rank">#1</span><div class="card-title">ChatGPT-4o</div><span class="tag">Lider</span><div class="card-desc">Her işe koşan, sesi, gözü, kulağı olan en gelişmiş model.</div></div>
-                <div class="card"><span class="rank">#2</span><div class="card-title">Perplexity</div><span class="tag">Araştırma</span><div class="card-desc">Google'da link aramak yerine cevabı kaynaklarıyla önüne getirir.</div></div>
-                <div class="card"><span class="rank">#3</span><div class="card-title">DeepL</div><span class="tag">Tercüme</span><div class="card-desc">Google Translate'in çok daha zeki ve doğal çeviren abisi.</div></div>
-                <div class="card"><span class="rank">#4</span><div class="card-title">Gamma</div><span class="tag">Sunum</span><div class="card-desc">Konuyu yaz, saniyeler içinde PowerPoint sunumu hazırlasın.</div></div>
+                <div class="card">
+                    <span class="rank">#1</span>
+                    <span class="tag">Lider Model</span>
+                    <div class="card-title">ChatGPT-4o</div>
+                    <div class="card-desc">Her işe koşan, sesi, gözü, kulağı olan en gelişmiş model.</div>
+                    <a href="https://chat.openai.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                </div>
+                <div class="card">
+                    <span class="rank">#2</span>
+                    <span class="tag">Araştırma Motoru</span>
+                    <div class="card-title">Perplexity</div>
+                    <div class="card-desc">Google'da link aramak yerine cevabı kaynaklarıyla önüne getirir.</div>
+                    <a href="https://www.perplexity.ai/" target="_blank" class="visit-btn">Aracı İncele</a>
+                </div>
+                <div class="card">
+                    <span class="rank">#3</span>
+                    <span class="tag">Doğal Çeviri</span>
+                    <div class="card-title">DeepL</div>
+                    <div class="card-desc">Google Translate'in çok daha zeki ve doğal çeviren versiyonu.</div>
+                    <a href="https://www.deepl.com/" target="_blank" class="visit-btn">Aracı İncele</a>
+                </div>
+                <div class="card">
+                    <span class="rank">#4</span>
+                    <span class="tag">Hızlı Sunum</span>
+                    <div class="card-title">Gamma</div>
+                    <div class="card-desc">Konuyu yaz, saniyeler içinde PowerPoint sunumu hazırlasın.</div>
+                    <a href="https://gamma.app/" target="_blank" class="visit-btn">Aracı İncele</a>
+                </div>
             </div>
         </section>
 
     </div>
 
-    <script>
-        function handleEnter(e) { if (e.key === 'Enter') sendMessage(); }
-
-        async function sendMessage() {
-            const input = document.getElementById('userInput');
-            const messagesDiv = document.getElementById('messages');
-            const text = input.value.trim();
-
-            if (!text) return;
-
-            messagesDiv.innerHTML += `<div class="message user-msg">${text}</div>`;
-            input.value = '';
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
-
-            const loadingId = 'loading-' + Date.now();
-            messagesDiv.innerHTML += `<div class="message bot-msg" id="${loadingId}">Arşivler taranıyor...</div>`;
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
-
-            // Simüle edilmiş yanıt (Backend olmadığı için)
-            setTimeout(() => {
-                document.getElementById(loadingId).remove();
-                // Buraya normalde API isteği gelir. Şimdilik statik cevap.
-                messagesDiv.innerHTML += `<div class="message bot-msg">Bu konuda "İlim ve Araştırma" bölümündeki araçlara bakmanı öneririm yiğidim. Bilhassa Perplexity işini görür.</div>`;
-                messagesDiv.scrollTop = messagesDiv.scrollHeight;
-            }, 1000);
-        }
-    </script>
 </body>
 </html>
