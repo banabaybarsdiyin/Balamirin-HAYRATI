@@ -890,14 +890,18 @@
 
     <script>
         (function () {
-            const sections = Array.from(document.querySelectorAll('.category-section'));
+            // Optimized: Cache DOM queries
+            const sections = Array.from(document.querySelectorAll('.category-section')).map(sec => ({
+                el: sec,
+                body: sec.querySelector('.category-body'),
+                header: sec.querySelector('.category-header')
+            }));
 
             function setHeights() {
-                sections.forEach(sec => {
-                    const body = sec.querySelector('.category-body');
+                sections.forEach(({ el, body }) => {
                     if (!body) return;
 
-                    if (sec.getAttribute('data-collapsed') === 'true') {
+                    if (el.getAttribute('data-collapsed') === 'true') {
                         body.style.maxHeight = '0px';
                     } else {
                         body.style.maxHeight = body.scrollHeight + 'px';
@@ -905,12 +909,11 @@
                 });
             }
 
-            function toggleSection(sec) {
-                const body = sec.querySelector('.category-body');
+            function toggleSection({ el, body }) {
                 if (!body) return;
 
-                const collapsed = sec.getAttribute('data-collapsed') === 'true';
-                sec.setAttribute('data-collapsed', collapsed ? 'false' : 'true');
+                const collapsed = el.getAttribute('data-collapsed') === 'true';
+                el.setAttribute('data-collapsed', collapsed ? 'false' : 'true');
 
                 if (collapsed) {
                     body.style.maxHeight = body.scrollHeight + 'px';
@@ -920,22 +923,25 @@
             }
 
             // Click binding
-            sections.forEach(sec => {
-                const header = sec.querySelector('.category-header');
-                if (!header) return;
-                header.addEventListener('click', () => toggleSection(sec));
+            sections.forEach(item => {
+                if (!item.header) return;
+                item.header.addEventListener('click', () => toggleSection(item));
             });
 
             // Initial
             setHeights();
 
-            // Resize: açık olanların yüksekliğini güncelle
+            // Optimized Resize: Throttled with requestAnimationFrame
+            let resizeFrame;
             window.addEventListener('resize', () => {
-                sections.forEach(sec => {
-                    if (sec.getAttribute('data-collapsed') === 'true') return;
-                    const body = sec.querySelector('.category-body');
-                    if (!body) return;
-                    body.style.maxHeight = body.scrollHeight + 'px';
+                if (resizeFrame) cancelAnimationFrame(resizeFrame);
+
+                resizeFrame = requestAnimationFrame(() => {
+                    sections.forEach(({ el, body }) => {
+                        if (el.getAttribute('data-collapsed') === 'true') return;
+                        if (!body) return;
+                        body.style.maxHeight = body.scrollHeight + 'px';
+                    });
                 });
             });
         })();
