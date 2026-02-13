@@ -929,15 +929,25 @@
             // Initial
             setHeights();
 
-            // Resize: açık olanların yüksekliğini güncelle
-            window.addEventListener('resize', () => {
+            // Utility: Debounce function to improve performance by limiting the rate of execution
+            function debounce(func, wait) {
+                let timeout;
+                return function(...args) {
+                    const context = this;
+                    clearTimeout(timeout);
+                    timeout = setTimeout(() => func.apply(context, args), wait);
+                };
+            }
+
+            // Resize: Update heights of open sections (Debounced to prevent layout thrashing)
+            window.addEventListener('resize', debounce(() => {
                 sections.forEach(sec => {
                     if (sec.getAttribute('data-collapsed') === 'true') return;
                     const body = sec.querySelector('.category-body');
                     if (!body) return;
                     body.style.maxHeight = body.scrollHeight + 'px';
                 });
-            });
+            }, 100));
         })();
     </script>
 
