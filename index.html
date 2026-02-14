@@ -890,6 +890,19 @@
 
     <script>
         (function () {
+            // ⚡ Bolt: Debounce function to limit the rate at which a function can fire.
+            function debounce(func, wait) {
+                let timeout;
+                return function(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+
             const sections = Array.from(document.querySelectorAll('.category-section'));
 
             function setHeights() {
@@ -930,14 +943,14 @@
             setHeights();
 
             // Resize: açık olanların yüksekliğini güncelle
-            window.addEventListener('resize', () => {
+            window.addEventListener('resize', debounce(() => {
                 sections.forEach(sec => {
                     if (sec.getAttribute('data-collapsed') === 'true') return;
                     const body = sec.querySelector('.category-body');
                     if (!body) return;
                     body.style.maxHeight = body.scrollHeight + 'px';
                 });
-            });
+            }, 150));
         })();
     </script>
 
